@@ -1,14 +1,17 @@
 package com.lopez.mongo.domain.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.lopez.mongo.domain.User;
 import com.lopez.mongo.domain.services.UserService;
@@ -33,6 +36,15 @@ public class UserResource {
 		User obj = service.findById(id);
 		
 		return ResponseEntity.ok().body(new UserDTO(obj)); 
+	}
+	
+	@RequestMapping(method = RequestMethod.POST) 
+	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto){  // PathVariable faz com que esse id do parametro case com o do value = {id}
+		User obj = service.fromDTO(objDto); // Converte o DTO para USER
+		obj = service.insert(obj);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); // Vai pegar o endereço do novo Objeto que eu inserir
+		return ResponseEntity.created(uri).build(); // retornar o cod 201 que significa que vc criou um recurso.
 	}
 	
 }
