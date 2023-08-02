@@ -47,4 +47,11 @@ public class UserResource {
 		return ResponseEntity.created(uri).build(); // retornar o cod 201 que significa que vc criou um recurso.
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE) 
+	public ResponseEntity<Void> delete(@PathVariable String id){  // PathVariable faz com que esse id do parametro case com o do value = {id}
+		service.delete(id);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
 }
