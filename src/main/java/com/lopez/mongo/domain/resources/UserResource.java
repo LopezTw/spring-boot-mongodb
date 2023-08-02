@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.lopez.mongo.domain.Post;
 import com.lopez.mongo.domain.User;
 import com.lopez.mongo.domain.services.UserService;
 import com.lopez.mongo.dto.UserDTO;
@@ -61,6 +62,13 @@ public class UserResource {
 		obj = service.update(obj);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET) 
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){  // PathVariable faz com que esse id do parametro case com o do value = {id}
+		User obj = service.findById(id);
+		
+		return ResponseEntity.ok().body(obj.getPosts()); 
 	}
 	
 }
