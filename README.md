@@ -1,7 +1,7 @@
 <h1 align="center">Simulação de sistema de Intereção entre usuários de redes sociais</h1>
 
 <h2>📝 Descrição</h2>
-<p>Esse repositório tem como objetivo mostrar um pouco do funcionamento de um Banco de dados relacinado a agregados (NoSQL), utilizando o MongoDB.</p>
+<p>Esse repositório tem como objetivo mostrar um pouco do funcionamento de um Banco de dados relacionado a agregados (NoSQL), utilizando o MongoDB.</p>
 
 <h2>📚 Funcionalidades</h2>
 <p>A funcionalidade dessa simples aplicação é criar uma interação entre usuários em um ambiente semelhante a rede social, no qual existem Posts e Comentários, efetuados por 1 ou mais Usuários.</p>
